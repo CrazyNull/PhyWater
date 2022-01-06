@@ -10,17 +10,24 @@ public class PhyWaterEditor : Editor
     {
         base.OnInspectorGUI();
         PhyWater pw = this.target as PhyWater;
-        if (GUILayout.Button("创建 Physical Cells"))
+        if (!Application.isPlaying)
         {
-            pw.CreatePhyCells();
-        }
-
-        if (GUILayout.Button("清理 Physical Cells"))
-        {
-            pw.ClearPhyCells();
-        }
-
-        if(!Application.isPlaying)
+            if (pw.UsePhyMesh)
+            {
+                pw.ClearPhyCells();
+            }
+            else
+            {
+                if (GUILayout.Button("创建 Physical Cells"))
+                {
+                    pw.CreatePhyCells();
+                }
+                if (GUILayout.Button("清理 Physical Cells"))
+                {
+                    pw.ClearPhyCells();
+                }
+            }
             pw.ApplyRenderPara();
+        }
     }
 }
