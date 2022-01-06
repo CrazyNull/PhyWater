@@ -25,6 +25,15 @@ public class PhyWater : MonoBehaviour
 
     protected float time => Time.time * WaveSpeed;
 
+
+    public static PhyWater Instance => _instance;
+    protected static PhyWater _instance = null;
+
+    private void Awake()
+    {
+        _instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,7 +86,18 @@ public class PhyWater : MonoBehaviour
     }
 
 
-    public Vector3 CalculationPos(Vector3 worldPos)
+    public Vector3 CalculationWorldPos(Vector3 worldPos)
+    {
+        Vector3 result = worldPos;
+        float y = WaveHeight1 * Mathf.Sin(WaveLenght1 * result.x + this.time) + WaveOffset1.y;
+        result.y = y;
+        y = WaveHeight2 * Mathf.Cos(WaveLenght2 * result.z + this.time) + WaveOffset2.y;
+        result.y = y;
+        result.y += this.Size.y * 0.5f;
+        return result;
+    }
+
+    protected Vector3 CalculationPos(Vector3 worldPos)
     {
         Vector3 result = worldPos;
         float y = WaveHeight1 * Mathf.Sin(WaveLenght1 * result.x + this.time) + WaveOffset1.y + result.y;

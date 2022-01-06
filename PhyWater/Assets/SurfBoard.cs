@@ -7,7 +7,6 @@ public class SurfBoard : MonoBehaviour
     public Transform MassCetner = null;
     public float JumpForce = 10f;
 
-    protected List<Collider> _waterCollider = new List<Collider>();
 
     protected float _clickTiming = 0;
     protected bool _press = false;
@@ -20,6 +19,7 @@ public class SurfBoard : MonoBehaviour
         this._rigidbody = this.GetComponent<Rigidbody>();
         this._rigidbody.sleepThreshold = 0.0001f;
         this._rigidbody.centerOfMass = MassCetner.localPosition;
+        this._rigidbody.maxDepenetrationVelocity = 5f;
     }
 
     // Start is called before the first frame update
@@ -62,32 +62,22 @@ public class SurfBoard : MonoBehaviour
         //}
     }
 
-
-    private void OnCollisionEnter(Collision collision)
+    private void FixedUpdate()
     {
-        if (collision.gameObject.layer != 4) return;
-        if (!this._waterCollider.Contains(collision.collider))
+        if (null != PhyWater.Instance)
         {
-            if (this._waterCollider.Count <= 0)
+            Vector3 pos = PhyWater.Instance.CalculationWorldPos(this.transform.position);
+            if (this.transform.position.y < pos.y - 0.05f)
             {
-                this._leftJumpCount = 3;
+                this.transform.position = pos;
             }
-            this._waterCollider.Add(collision.collider);
         }
     }
 
-    private void nCollisionStay(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer != 4) return;
         this._leftJumpCount = 3;
     }
 
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.layer != 4) return;
-        if (this._waterCollider.Contains(collision.collider))
-        {
-            this._waterCollider.Remove(collision.collider);
-        }
-    }
 }
