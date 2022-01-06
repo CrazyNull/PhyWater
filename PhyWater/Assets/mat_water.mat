@@ -76,16 +76,16 @@ Material:
     - _Time: 13.900046
     - _UVSec: 0
     - _WaveHeight: 0.1
-    - _WaveHeight1: 1
+    - _WaveHeight1: 0.5
     - _WaveHeight2: 0.1
     - _WaveLenght: 4.86
-    - _WaveLenght1: 0.2
+    - _WaveLenght1: 1
     - _WaveLenght2: 1
     - _ZWrite: 1
-    - _time: 0.3382855
+    - _time: 0.12
     m_Colors:
     - _CenterPos: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 0.13679248, g: 0.61282617, b: 1, a: 0.64705884}
+    - _Color: {r: 0.13679248, g: 0.61282617, b: 1, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}

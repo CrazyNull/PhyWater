@@ -76,6 +76,12 @@ public class SurfBoard : MonoBehaviour
         }
     }
 
+    private void nCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.layer != 4) return;
+        this._leftJumpCount = 3;
+    }
+
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.layer != 4) return;
