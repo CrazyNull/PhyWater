@@ -67,7 +67,7 @@ public class SurfBoard : MonoBehaviour
         if (null != PhyWater.Instance)
         {
             Vector3 pos = PhyWater.Instance.CalculationWorldPos(this.transform.position);
-            if (this.transform.position.y < pos.y - 0.05f)
+            if (this.transform.position.y < pos.y - 0.1f)
             {
                 this.transform.position = pos;
             }
