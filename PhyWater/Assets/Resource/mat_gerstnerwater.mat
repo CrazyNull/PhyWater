@@ -75,14 +75,14 @@ Material:
     - _SrcBlend: 1
     - _Time: 13.900046
     - _UVSec: 0
-    - _WaveHeight: 1
+    - _WaveHeight: 1.5
     - _WaveHeight1: 0.5
     - _WaveHeight2: 0.1
     - _WaveLenght: 0.25
     - _WaveLenght1: 1
     - _WaveLenght2: 1
     - _ZWrite: 1
-    - _time: 55.609646
+    - _time: 98.99431
     m_Colors:
     - _CenterPos: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0.13679248, g: 0.61282617, b: 1, a: 1}
