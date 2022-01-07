@@ -82,7 +82,7 @@ Material:
     - _WaveLenght1: 1
     - _WaveLenght2: 1
     - _ZWrite: 1
-    - _time: 130.7244
+    - _time: 127.3035
     m_Colors:
     - _CenterPos: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0.13679248, g: 0.61282617, b: 1, a: 1}

@@ -58,41 +58,9 @@ public class PhyWater : MonoBehaviour
         }
     }
 
-    public void CreatePhyCells()
-    {
-        Vector3 startPos = new Vector3(-this.Size.x + this.PhyCellRadius ,0,this.Size.z  - this.PhyCellRadius);
-        for (int i = 0; i < this.Size.z / this.PhyCellRadius; ++i)
-        {
-            for (int j = 0; j < this.Size.x / this.PhyCellRadius; ++j)
-            {
-                GameObject go = new GameObject("Phy Cell");
-                go.transform.parent = this.transform;
-                go.layer = 4;
-                CapsuleCollider collider = go.AddComponent<CapsuleCollider>();
-                collider.radius = this.PhyCellRadius;
-                collider.height = this.Size.y;
-                go.transform.localPosition = new Vector3(startPos.x + this.PhyCellRadius * 2f * j, 0, startPos.z - this.PhyCellRadius * 2f * i);
-            }
-        }
-    }
-
-    public void ClearPhyCells()
-    {
-        for (int i = 0; i < this.transform.childCount; ++i)
-        {
-            GameObject.DestroyImmediate(this.transform.GetChild(0).gameObject);
-            --i;
-        }
-    }
-
-
     public Vector3 CalculationWorldPos(Vector3 worldPos)
     {
-        Vector3 result = worldPos;
-        float y = WaveHeight1 * Mathf.Sin(WaveLenght1 * result.x + this.time) + WaveOffset1.y;
-        result.y = y;
-        y = WaveHeight2 * Mathf.Cos(WaveLenght2 * result.z + this.time) + WaveOffset2.y;
-        result.y = y;
+        Vector3 result = WaveSimulation.SimulationDefaultWave(worldPos,this.time,WaveHeight1,WaveLenght1,WaveOffset1, WaveHeight2, WaveLenght2, WaveOffset2);
         result.y += this.Size.y * 0.5f;
         return result;
     }
