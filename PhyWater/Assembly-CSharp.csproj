@@ -54,7 +54,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\SurfBoard.cs" />
-    <Compile Include="Assets\Scripts\PhyWater.cs" />
+    <Compile Include="Assets\Scripts\DefaultWater.cs" />
     <Compile Include="Assets\Scripts\WaveSimulation.cs" />
   </ItemGroup>
   <ItemGroup>
