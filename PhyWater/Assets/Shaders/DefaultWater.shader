@@ -8,17 +8,15 @@ Shader "Unlit/DefaultWater"
 
         _WaveHeight1("Wave Height 1",Float) = 0.25
         _WaveLenght1("Wave Lenght 1",Float) = 1.0
-        _WaveOffset1("Wave Offset 1",Vector) = (0,0,0,0)
 
         _WaveHeight2("Wave Height 2",Float) = 0.25
         _WaveLenght2("Wave Lenght 2",Float) = 1.0
-        _WaveOffset2("Wave Offset 2",Vector) = (0,0,0,0)
 
         _time("Time",Float) = 0
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Transparent" }
         LOD 100
 
         Pass
@@ -49,7 +47,6 @@ Shader "Unlit/DefaultWater"
                 float4 vertex : SV_POSITION;
                 
 				float3 worldPos:TEXCOORD2;
-				//float3 worldNormal:TEXCOORD3;
 				float3 worldViewDir:TEXCOORD4;
             };
 
@@ -59,11 +56,9 @@ Shader "Unlit/DefaultWater"
 
             float _WaveHeight1;
             float _WaveLenght1;
-            float3 _WaveOffset1;
 
             float _WaveHeight2;
             float _WaveLenght2;
-            float3 _WaveOffset2;
 
             float _time;
      
@@ -74,7 +69,7 @@ Shader "Unlit/DefaultWater"
                 float4 worldPos = mul(unity_ObjectToWorld,v.vertex);
                 if(v.color.r >= 0.01)
                 {
-                    worldPos = SimulationDefaultWave(worldPos,_time,_WaveHeight1,_WaveLenght1,_WaveOffset1,_WaveHeight2,_WaveLenght2,_WaveOffset2);;
+                    worldPos = SimulationDefaultWave(worldPos,_time,_WaveHeight1,_WaveLenght1,_WaveHeight2,_WaveLenght2);
                 }
                 v.vertex = mul(unity_WorldToObject,worldPos);
                 o.vertex = UnityObjectToClipPos(v.vertex);

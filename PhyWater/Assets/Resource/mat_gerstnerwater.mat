@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mat_water
-  m_Shader: {fileID: 4800000, guid: 31a0902cd4a10344da5baa7ad3c1681d, type: 3}
+  m_Name: mat_gerstnerwater
+  m_Shader: {fileID: 4800000, guid: 44d80ae864dc36441a488f13cd800822, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -75,14 +75,14 @@ Material:
     - _SrcBlend: 1
     - _Time: 13.900046
     - _UVSec: 0
-    - _WaveHeight: 0.1
-    - _WaveHeight1: 2.47
+    - _WaveHeight: 1
+    - _WaveHeight1: 0.5
     - _WaveHeight2: 0.1
-    - _WaveLenght: 4.86
+    - _WaveLenght: 0.25
     - _WaveLenght1: 1
     - _WaveLenght2: 1
     - _ZWrite: 1
-    - _time: 104.10006
+    - _time: 55.609646
     m_Colors:
     - _CenterPos: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0.13679248, g: 0.61282617, b: 1, a: 1}
