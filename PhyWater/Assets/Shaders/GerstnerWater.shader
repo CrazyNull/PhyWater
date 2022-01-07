@@ -29,7 +29,7 @@ Shader "Unlit/GerstnerWater"
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
-				float3 normal:NORMAL;
+				float3 normal : NORMAL;
                 float4 color : Color;
             };
 
@@ -38,7 +38,7 @@ Shader "Unlit/GerstnerWater"
                 float2 uv : TEXCOORD0;
                 UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
-				float3 worldPos : TEXCOORD2;
+				float3 worldNormal : TEXCOORD2;
             };
 
             float4 _Color;
@@ -52,23 +52,24 @@ Shader "Unlit/GerstnerWater"
                 v2f o;
 
                 float4 worldPos = mul(unity_ObjectToWorld,v.vertex);
+                GerstnerResult result = SimulationGerstnerWave(worldPos,_time,_WaveHeight,_WaveLenght);
                 if(v.color.r >= 0.01)
                 {
-                    worldPos = SimulationGerstnerWave(worldPos,_time,_WaveHeight,_WaveLenght);
+                    worldPos = result.pos;
                 }
                 v.vertex = mul(unity_WorldToObject,worldPos);
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
                 UNITY_TRANSFER_FOG(o,o.vertex);
 
-                o.worldPos = worldPos;
+                o.worldNormal = result.normal;
 
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed3 worldNormal = normalize(cross(ddy(i.worldPos),ddx(i.worldPos)));
+                fixed3 worldNormal = i.worldNormal; // normalize(cross(ddy(i.worldPos),ddx(i.worldPos)));
 				float3 worldLightDir = normalize(_WorldSpaceLightPos0.xyz);
 				float lambert = dot(worldNormal, worldLightDir) * 0.5 + 0.5;
 				fixed4 col = lambert * _Color;

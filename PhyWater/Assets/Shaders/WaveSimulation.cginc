@@ -13,16 +13,28 @@ inline float4 SimulationDefaultWave(float4 worldPos,
     return result;
 }
 
+struct GerstnerResult
+{
+    float4 pos;
+    float3 normal;
+};
 
-inline float4 SimulationGerstnerWave(float4 worldPos,
+inline GerstnerResult SimulationGerstnerWave(float4 worldPos,
         float time,
         float WaveHeight,
         float WaveLenght)
 {
-    float4 result = worldPos;
+
+    GerstnerResult result;
+
+    result.pos = worldPos;
     float k = 2 * 3.141592654 / WaveLenght;
     float f = k * (worldPos.x + time);
-    result.x += WaveHeight * cos(f);
-    result.y += WaveHeight * sin(f);
+    result.pos.x += WaveHeight * cos(f);
+    result.pos.y += WaveHeight * sin(f);
+
+    float3 t = normalize(float3(1 - k * WaveHeight * sin(f) ,k * WaveHeight * cos(f),0));
+    result.normal = float3(-t.y,t.x,0);
+
     return result;
 }
