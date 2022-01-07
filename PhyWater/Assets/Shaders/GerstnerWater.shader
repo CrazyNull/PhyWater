@@ -69,7 +69,7 @@ Shader "Unlit/GerstnerWater"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed3 worldNormal = i.worldNormal; // normalize(cross(ddy(i.worldPos),ddx(i.worldPos)));
+                fixed3 worldNormal = i.worldNormal;
 				float3 worldLightDir = normalize(_WorldSpaceLightPos0.xyz);
 				float lambert = dot(worldNormal, worldLightDir) * 0.5 + 0.5;
 				fixed4 col = lambert * _Color;
