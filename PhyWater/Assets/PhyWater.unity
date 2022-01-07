@@ -816,8 +816,8 @@ MonoBehaviour:
   PhyCellRadius: 0.5
   Renderer: {fileID: 1501605836}
   WaveSpeed: 6
-  WaveHeight: 1.5
-  WaveLenght: 0.25
+  WaveHeight: 1
+  WaveLenght: 10
 --- !u!23 &1501605836 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 14b44f72008c1ab4886412f89e6c3acd, type: 3}

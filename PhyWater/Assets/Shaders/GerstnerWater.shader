@@ -38,7 +38,7 @@ Shader "Unlit/GerstnerWater"
                 float2 uv : TEXCOORD0;
                 UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
-				float3 worldPos:TEXCOORD2;
+				float3 worldPos : TEXCOORD2;
             };
 
             float4 _Color;

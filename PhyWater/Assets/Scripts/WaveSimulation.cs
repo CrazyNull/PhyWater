@@ -25,9 +25,11 @@ public static class WaveSimulation
         float WaveLenght)
     {
         Vector3 result = worldPos;
-        float k = WaveLenght * worldPos.x + time;
-        result.x += WaveHeight * Mathf.Cos(k);
-        result.y += WaveHeight * Mathf.Sin(k);
+
+        float k = 2 * Mathf.PI / WaveLenght;
+        float f = k * (worldPos.x + time);
+        result.x += WaveHeight * Mathf.Cos(f);
+        result.y += WaveHeight * Mathf.Sin(f);
         return result;
     }
 }
