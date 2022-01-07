@@ -56,9 +56,12 @@
     <Compile Include="Assets\Scripts\SurfBoard.cs" />
     <Compile Include="Assets\Scripts\DefaultWater.cs" />
     <Compile Include="Assets\Scripts\WaveSimulation.cs" />
+    <Compile Include="Assets\Scripts\PhyWater.cs" />
+    <Compile Include="Assets\Scripts\GerstnerWater.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\DefaultWater.shader" />
+    <None Include="Assets\Shaders\GerstnerWater.shader" />
     <None Include="Assets\Shaders\WaveSimulation.cginc" />
   </ItemGroup>
   <ItemGroup>

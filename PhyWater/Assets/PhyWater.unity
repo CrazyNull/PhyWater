@@ -706,14 +706,13 @@ MonoBehaviour:
   Size: {x: 6, y: 2, z: 4}
   PhyCellRadius: 0.5
   Renderer: {fileID: 1501605836}
-  WaveSpeed: 3
+  WaveSpeed: 0.5
   WaveHeight1: 0.5
   WaveLenght1: 1
   WaveOffset1: {x: 0, y: 0, z: 0}
   WaveHeight2: 0.1
   WaveLenght2: 1
   WaveOffset2: {x: 0, y: 0, z: 0}
-  UsePhyMesh: 1
 --- !u!23 &1501605836 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 14b44f72008c1ab4886412f89e6c3acd, type: 3}
