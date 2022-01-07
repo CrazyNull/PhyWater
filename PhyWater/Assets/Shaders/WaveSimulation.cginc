@@ -20,7 +20,8 @@ inline float4 SimulationGerstnerWave(float4 worldPos,
         float WaveLenght)
 {
     float4 result = worldPos;
-    result.x += WaveHeight * cos(WaveLenght * worldPos.x + time);
-    result.y += WaveHeight * sin(WaveLenght * worldPos.x + time);
+    float k = WaveLenght * worldPos.x + time;
+    result.x += WaveHeight * cos(k);
+    result.y += WaveHeight * sin(k);
     return result;
 }
