@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,15 +53,13 @@
     <UnityVersion>2021.1.24f1c1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Compile Include="Assets\Scripts\SurfBoard.cs" />
+    <Compile Include="Assets\Scripts\PhyWater.cs" />
+    <Compile Include="Assets\Scripts\WaveSimulation.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\SurfBoard.cs" />
-    <Compile Include="Assets\Move.cs" />
-    <Compile Include="Assets\PhyWater.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\PhyWater.shader" />
+    <None Include="Assets\Shaders\DefaultWater.shader" />
+    <None Include="Assets\Shaders\WaveSimulation.cginc" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

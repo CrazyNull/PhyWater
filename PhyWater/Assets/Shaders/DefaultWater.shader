@@ -1,4 +1,4 @@
-Shader "Unlit/PhyWater"
+Shader "Unlit/DefaultWater"
 {
     Properties
     {
@@ -32,6 +32,7 @@ Shader "Unlit/PhyWater"
             #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
+            #include "WaveSimulation.cginc"
 
             struct appdata
             {
@@ -64,20 +65,8 @@ Shader "Unlit/PhyWater"
             float _WaveLenght2;
             float3 _WaveOffset2;
 
-            float3 _CenterPos;
             float _time;
-
-            float4 calculationPos(float4 worldPos)
-            {                
-                float4 result = worldPos;
-                float y = _WaveHeight1 * sin(_WaveLenght1 * result.x + _time) + _WaveOffset1.y;
-                result.y += y;
-                y = _WaveHeight2 * cos(_WaveLenght2 * result.z + _time) + _WaveOffset2.y;
-                result.y += y;
-                return result;
-            }
-
-
+     
             v2f vert (appdata v)
             {
                 v2f o;
@@ -85,7 +74,7 @@ Shader "Unlit/PhyWater"
                 float4 worldPos = mul(unity_ObjectToWorld,v.vertex);
                 if(v.color.r >= 0.01)
                 {
-                    worldPos = calculationPos(worldPos);
+                    worldPos = SimulationDefaultWave(worldPos,_time,_WaveHeight1,_WaveLenght1,_WaveOffset1,_WaveHeight2,_WaveLenght2,_WaveOffset2);;
                 }
                 v.vertex = mul(unity_WorldToObject,worldPos);
                 o.vertex = UnityObjectToClipPos(v.vertex);
@@ -93,7 +82,6 @@ Shader "Unlit/PhyWater"
                 UNITY_TRANSFER_FOG(o,o.vertex);
 
                 o.worldPos = worldPos;
-		        //o.worldNormal = mul(v.normal, (float3x3)unity_WorldToObject);
 				o.worldViewDir = _WorldSpaceCameraPos.xyz - mul(unity_ObjectToWorld, v.vertex).xyz;
 
                 return o;
@@ -102,7 +90,6 @@ Shader "Unlit/PhyWater"
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed3 worldNormal = normalize(cross(ddy(i.worldPos),ddx(i.worldPos)));
-				//float3 worldNormal = normalize(i.worldNormal);
 				float3 worldViewDir = normalize(i.worldViewDir);
 				float3 worldLightDir = normalize(_WorldSpaceLightPos0.xyz);
 
